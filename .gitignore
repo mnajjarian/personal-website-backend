@@ -1,6 +1,8 @@
 .vscode
 node_modules
 .env
+dist
 requests
 yarn-error.log
 db.json
+.eslintrc.js

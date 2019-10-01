@@ -1,11 +1,11 @@
-import  express  from "express";
-const Post = require('../../models/post');
+import  { Request, Response }  from "express";
+import Post from '../../models/post';
 interface Post {
-    title: String,
-    shortDescription: String,
-    paragraph: String
+    title: string;
+    shortDescription: string;
+    paragraph: string;
 }
-const create = (req: express.Request, res: express.Response) => {
+const create = (req: Request, res: Response): void => {
     const newPost = new Post(req.body)
 
     newPost
@@ -15,9 +15,9 @@ const create = (req: express.Request, res: express.Response) => {
     }).catch((err: Error) => res.status(400).json(err));
 }
 
-const getAll = async (req: express.Request, res: express.Response) => {
+const getAll = async (req: Request, res: Response): Promise<import('express-serve-static-core').Response> => {
     const posts = await Post.find({})
     return res.send(posts)
 }
 
-module.exports = { create, getAll }
+export const Controller = { create, getAll }

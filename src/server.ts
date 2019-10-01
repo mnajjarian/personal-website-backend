@@ -1,10 +1,10 @@
-import express from 'express';
-import {config} from 'dotenv';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import morgan from 'morgan';
+import * as express from 'express';
+import { config } from 'dotenv';
+import * as bodyParser from 'body-parser';
+import * as mongoose from 'mongoose';
+import * as morgan from 'morgan';
+import router from './routes/index';
 
-const router = require('./routes/index');
 const app = express();
 
 if (process.env.NODE_ENV !== 'production') {
