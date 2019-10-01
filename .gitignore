@@ -1,2 +1,6 @@
+.vscode
 node_modules
 .env
+requests
+yarn-error.log
+db.json
