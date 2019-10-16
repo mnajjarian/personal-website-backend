@@ -1,5 +1,5 @@
 import  { Request, Response }  from "express";
-import Post from '../models/post';
+import Blog from '../models/blog';
 
 interface Post {
     title: string;
@@ -9,11 +9,11 @@ interface Post {
 
 export class BlogController {
     async getPosts(_: Request, res: Response): Promise<import('express-serve-static-core').Response> {
-        const posts = await Post.find({});
+        const posts = await Blog.find({});
         return res.send(posts)
     }
     async create(req: Request, res: Response): Promise<void> {
-        const newPost = new Post(req.body)
+        const newPost = new Blog(req.body)
         newPost
           .save()
           .then((post: Post) => {

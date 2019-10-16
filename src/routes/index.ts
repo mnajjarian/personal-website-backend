@@ -1,12 +1,17 @@
 import { Router } from 'express';
-import  {Controller} from '../controllers/post'; 
+import * as passport from 'passport';
+import { BlogController } from '../controllers/blogController'; 
+import { UserController } from '../controllers/userController';
+
+const userController = new UserController();
+const blogController = new BlogController();
 
 const router = Router();
 
-
-
-router.get('/posts', Controller.getAll)
-router.post('/posts', Controller.create)
+router.post('/login', userController.signIn)
+router.post('/signup', userController.signUp)
+router.get('/posts', blogController.create)
+router.post('/posts', blogController.getPosts)
 
 
 

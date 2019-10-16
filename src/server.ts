@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 import * as bodyParser from 'body-parser';
 import * as mongoose from 'mongoose';
 import * as morgan from 'morgan';
+import * as passport from 'passport';
 import router from './routes/index';
 
 const app = express();
@@ -10,8 +11,6 @@ const app = express();
 if (process.env.NODE_ENV !== 'production') {
   config();
 }
-
-app.use(bodyParser.json());
 
 mongoose
   .connect(process.env.MONGODB_URI || '', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -23,7 +22,12 @@ mongoose
     return null;
   });
 
+app.use(bodyParser.json());
 app.use(morgan('dev'));
+app.use(passport.initialize());
+app.use(passport.session())
+require('./passportConfig');
+
 app.use('/', router);
 
 const port = process.env.PORT;
