@@ -1,12 +1,12 @@
 import { Schema, Document, model } from 'mongoose';
 
-export interface Post extends Document {
+export interface Blog extends Document {
     title: string; 
     shortDescription: string;
     paragraph: string;
 };
 
-const PostSchema = new Schema({
+const BlogSchema = new Schema({
     title: {
         type: String,
     },
@@ -18,6 +18,6 @@ const PostSchema = new Schema({
     },
 })
 
-const Post = model<Post>('Post', PostSchema);
+const Blog = model<Blog>('Blog', BlogSchema);
 
-export default Post;
+export default Blog;
