@@ -4,6 +4,7 @@ import * as bodyParser from 'body-parser';
 import * as mongoose from 'mongoose';
 import * as morgan from 'morgan';
 import * as passport from 'passport';
+import * as cors from 'cors';
 import router from './routes/index';
 
 const app = express();
@@ -21,7 +22,7 @@ mongoose
     console.log(err);
     return null;
   });
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(passport.initialize());
