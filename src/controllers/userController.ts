@@ -39,30 +39,4 @@ export class UserController {
     }
 }
 
-/* const login = async (req: Request, res: Response) => {
-    const token: string = authenticate.getToken({ _id: req.user._id })
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json({ success: true, token: token, status: 'You are Successfully login!' })
-}
-
-const signUp = (req: Request, res: Response) => {
-    User.register(new User({ username: req.body.username }),
-    req.body.password, (err: Error) => {
-        if(err) {
-            res.statusCode = 500;
-            res.setHeader('Content-Type', 'application/json');
-            res.json({ err: err })
-        }
-        else {
-            passport.authenticate('local', (req: Request, res: Response) => {
-                const token: string = authenticate.getToken({ _id: req.user._id });
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json({ success: true, token: token, status: 'Registration Successful!' })
-            });
-        }
-    })
-} */
-
 
