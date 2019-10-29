@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import * as bodyParser from "body-parser";
 import * as passport from "passport";
 import * as mongoose from "mongoose";
+import * as bcrypt from 'bcrypt';
 import { IUserModel } from "../models/user";
 import * as jwt from "jsonwebtoken";
 
@@ -20,8 +21,7 @@ export class UserController {
       res.status(500).send(error.message);
     }
   }
-
-  signIn(req: Request, res: Response, next: NextFunction): void {
+signIn(req: Request, res: Response, next: NextFunction): void {
     passport.authenticate(
       "local",
       (err: Error, user: IUserModel, info: any) => {
