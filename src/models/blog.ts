@@ -1,21 +1,19 @@
 import { Schema, Document, model } from 'mongoose';
+import { Timestamp } from 'bson';
 
 export interface Blog extends Document {
-    title: string; 
-    shortDescription: string;
-    paragraph: string;
+    content: string;
 };
 
 const BlogSchema = new Schema({
-    title: {
+    content: {
         type: String,
-    },
-    shortDescription: {
-        type: String,
-    },
-    paragraph: {
-        type: String,
-    },
+    }
+},{
+    timestamps: {
+        createdAt: true,
+        updatedAt: true
+    }
 })
 
 const Blog = model<Blog>('Blog', BlogSchema);
