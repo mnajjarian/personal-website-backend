@@ -2,9 +2,7 @@ import  { Request, Response }  from "express";
 import Blog from '../models/blog';
 
 interface Post {
-    title: string;
-    shortDescription: string;
-    paragraph: string;
+    content: string;
 }
 
 export class BlogController {
@@ -13,7 +11,11 @@ export class BlogController {
         return res.send(posts)
     }
     async create(req: Request, res: Response): Promise<void> {
-        const newPost = new Blog(req.body)
+
+        const newPost = new Blog({
+            content: JSON.stringify(req.body)
+        })
+        console.log(req.body)
         newPost
           .save()
           .then((post: Post) => {
