@@ -2,7 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import * as bodyParser from "body-parser";
 import * as passport from "passport";
 import * as mongoose from "mongoose";
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from "bcrypt";
 import { IUserModel } from "../models/user";
 import * as jwt from "jsonwebtoken";
 
@@ -10,18 +10,39 @@ require("../models/user");
 const User = mongoose.model<IUserModel>("User");
 
 export class UserController {
+  getUsers(req: Request, res: Response): void {
+    User.find({})
+      .then(users => {
+        res.json(users);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+  updateUser(req: Request, res: Response): void {
+    const userId = req.params.id;
+    User.findByIdAndUpdate(userId, req.body, { new: true })
+      .then(updatedUser => {
+        res.json(updatedUser.toJSON());
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(400).send({ Error: "malformatted id" });
+      });
+  }
   async signUp(req: Request, res: Response): Promise<void> {
     const { email, firstName, lastName, password } = req.body;
     const user = await new User({ email, firstName, lastName });
-    try {
-      const newUser = await User.register(user, password);
-      res.json(newUser);
-    } catch (error) {
-      console.log(error);
-      res.status(500).send(error.message);
-    }
+    User.register(user, password)
+      .then(user => {
+        res.json(user);
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).send(error.message);
+      });
   }
-signIn(req: Request, res: Response, next: NextFunction): void {
+  signIn(req: Request, res: Response, next: NextFunction): void {
     passport.authenticate(
       "local",
       (err: Error, user: IUserModel, info: any) => {

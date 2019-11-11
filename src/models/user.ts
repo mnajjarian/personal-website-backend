@@ -8,6 +8,10 @@ export interface IUserModel extends IUser, Document {
 }
 
 export const UserSchema: Schema = new Schema({
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
     email: {
         type: String,
         required: true,
@@ -21,10 +25,10 @@ export const UserSchema: Schema = new Schema({
         type: String,
         required: true
     },
-    avatar: {
+    imageUrl: {
         type: String
     },
-    about: {
+    bio: {
         type: String,
         trim: true
     }

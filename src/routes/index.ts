@@ -9,7 +9,8 @@ const blogController = new BlogController();
 const profileController = new ProfileController();
 const router = Router();
 
-
+router.get('/users', userController.getUsers)
+router.put('/users/:id', userController.updateUser)
 router.post('/login', userController.signIn)
 router.post('/signup', userController.signUp)
 

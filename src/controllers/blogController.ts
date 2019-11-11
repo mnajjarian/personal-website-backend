@@ -13,9 +13,9 @@ export class BlogController {
     async create(req: Request, res: Response): Promise<void> {
 
         const newPost = new Blog({
-            content: JSON.stringify(req.body)
+            content: req.body.draft
         })
-        console.log(req.body)
+        console.log('req.body: ', req.body, 'newPost: ', newPost)
         newPost
           .save()
           .then((post: Post) => {
