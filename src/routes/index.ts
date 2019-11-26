@@ -16,6 +16,7 @@ router.post('/signup', userController.signUp)
 
 router.post('/posts', blogController.create)
 router.get('/posts', blogController.getPosts)
+router.delete('/posts/:id', blogController.removePost)
 
 router.post('/profile', profileController.create)
 router.get('/profile', profileController.getProfile)
