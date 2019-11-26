@@ -1,5 +1,4 @@
 import { Schema, Document, model } from "mongoose";
-import { Timestamp } from "bson";
 
 export interface Blog extends Document {
   content: string;
@@ -22,7 +21,13 @@ const BlogSchema = new Schema(
     }
   }
 );
-
+BlogSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString();
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+});
 const Blog = model<Blog>("Blog", BlogSchema);
 
 export default Blog;

@@ -24,6 +24,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 mongoose.set("useCreateIndex", true);
+mongoose.set("useFindAndModify", false);
 mongoose
   .connect(process.env.MONGODB_URI || "", {
     useNewUrlParser: true,
