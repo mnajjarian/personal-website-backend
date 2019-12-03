@@ -40,7 +40,6 @@ export class BlogController {
             return res.json({ Error: 'malformated id'})
         }
         const updatedPost = {...post, content: req.body };
-        console.log(req.body)
         await Blog.findByIdAndUpdate(req.params.id, { content: req.body.content })
         .then(post => {
             res.json(post.toJSON())
