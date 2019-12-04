@@ -3,10 +3,12 @@ import * as passport from 'passport';
 import { BlogController } from '../controllers/blogController'; 
 import { UserController } from '../controllers/userController';
 import { ProfileController } from '../controllers/profileController';
+import { GalleryController } from '../controllers/galleryController';
 
 const userController = new UserController();
 const blogController = new BlogController();
 const profileController = new ProfileController();
+const gallaryController = new GalleryController();
 const router = Router();
 
 router.get('/users', userController.getUsers)
@@ -22,5 +24,6 @@ router.delete('/posts/:id', blogController.removePost)
 router.post('/profile', profileController.create)
 router.get('/profile', profileController.getProfile)
 
+router.delete('/assets/:id', gallaryController.removeOne)
 
 export default router;
