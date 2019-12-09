@@ -22,9 +22,15 @@ const blogFormat = (blog: any) => {
     }
 }
 export class BlogController {
-    async getPosts(_: Request, res: Response): Promise<import('express-serve-static-core').Response> {
-        const posts = await Blog.find({});
-        return res.json(posts.map(post => post.toJSON()));
+    async getPosts(_: Request, res: Response): Promise<void> {
+        await Blog.find({}).populate('comments')
+        .exec((err, result) => {
+            if(err) {
+                console.log(err)
+            }
+            res.json(result.map(post => post.toJSON()));
+        })
+        
     };
     async create(req: Request, res: Response): Promise<void> {
         const newPost = new Blog(req.body)
