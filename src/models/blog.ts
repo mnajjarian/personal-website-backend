@@ -1,10 +1,10 @@
 import { Schema, Document, model } from "mongoose";
-import { Comment } from "./comment";
+import { IComment } from "./comment";
 
 export interface Blog extends Document {
   content: string;
   author: string;
-  comments: Comment[];
+  comments: IComment[];
 }
 
 const BlogSchema = new Schema(

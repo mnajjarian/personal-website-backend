@@ -1,17 +1,14 @@
 import { Request, Response } from 'express';
-import Comment from '../models/comment';
+import Comment, { IComment } from '../models/comment';
 import Blog from '../models/blog';
 
 export class CommentController {
-    async getComments(req: Request, res: Response) {
+    async getComments(req: Request, res: Response): Promise<void> {
         const comments = await Comment.find({}).populate('post')
         res.json(comments)
     };
-    async addComment(req: Request, res: Response) {
-        const comment = new Comment({
-            comment: req.body.comment,
-            post: req.body.post
-        })
+    async addComment(req: Request, res: Response): Promise<void> {
+        const comment: IComment = new Comment(req.body)
         const blog = await Blog.findById(req.body.post)
         blog.comments = blog.comments.concat(comment._id)
         await blog.save()
