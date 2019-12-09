@@ -6,12 +6,12 @@ import * as bcrypt from "bcrypt";
 import { IUserModel } from "../models/user";
 import * as jwt from "jsonwebtoken";
 
-require('dotenv').config();
+require("dotenv").config();
 require("../models/user");
 
-var cloudinary = require('cloudinary').v2
-cloudinary.config({ 
-  cloud_name: process.env.CLOUD_NAME, 
+var cloudinary = require("cloudinary").v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_KEY,
   api_secret: process.env.CLOUD_SECRET
 });
@@ -30,11 +30,14 @@ export class UserController {
   }
   updateUser(req: Request, res: Response): void {
     const userId = req.params.id;
-    cloudinary.uploader.destroy(req.body.publicId, (err: Error, result: any) => { 
-      console.log(result) 
-    });
-    console.log(req.body)
-     User.findByIdAndUpdate(userId, req.body.obj, { new: true })
+    cloudinary.uploader.destroy(
+      req.body.publicId,
+      { invalidate: true },
+      (err: Error, result: any) => {
+        console.log(result);
+      }
+    );
+    User.findByIdAndUpdate(userId, req.body.obj, { new: true })
       .then(updatedUser => {
         res.json(updatedUser.toJSON());
       })
@@ -45,7 +48,13 @@ export class UserController {
   }
   async signUp(req: Request, res: Response): Promise<void> {
     const { email, firstName, lastName, password } = req.body;
-    const user = await new User({ email, firstName, lastName, imageUrl: '', bio: '' });
+    const user = await new User({
+      email,
+      firstName,
+      lastName,
+      imageUrl: "",
+      bio: ""
+    });
     User.register(user, password)
       .then(user => {
         res.json(user);
