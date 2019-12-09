@@ -1,8 +1,10 @@
 import { Schema, Document, model } from "mongoose";
+import { Comment } from "./comment";
 
 export interface Blog extends Document {
   content: string;
   author: string;
+  comments: Comment[];
 }
 
 const BlogSchema = new Schema(
@@ -12,7 +14,10 @@ const BlogSchema = new Schema(
     },
     author: {
       type: String
-    }
+    },
+    comments: [{
+      type: Schema.Types.ObjectId, ref: "Comment"
+    }]
   },
   {
     timestamps: {
