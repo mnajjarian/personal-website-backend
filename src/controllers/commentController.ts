@@ -20,4 +20,13 @@ export class CommentController {
             console.log(err)
         });
     };
+    async removeComment(req: Request, res: Response): Promise<void> {
+        await Comment.findByIdAndDelete(req.params.id)
+        .then(result => {
+            res.json(result)
+        })
+        .catch((err: Error) => {
+            console.log(err)
+        });
+    }
 }

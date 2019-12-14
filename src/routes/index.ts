@@ -26,6 +26,7 @@ router.delete('/posts/:id', blogController.removePost)
 
 router.get('/comments', commentController.getComments)
 router.post('/comments', commentController.addComment)
+router.delete('/comments/:id', commentController.removeComment)
 
 router.post('/profile', profileController.create)
 router.get('/profile', profileController.getProfile)
