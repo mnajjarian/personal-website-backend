@@ -24,7 +24,7 @@ interface Post {
 export class BlogController {
     async getPosts(_: Request, res: Response): Promise<void> {
         await Blog.find({}).populate('comments')
-        .exec((err, result) => {
+        .then((err, result) => {
             if(err) {
                 console.log(err)
             }

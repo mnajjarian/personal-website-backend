@@ -1,15 +1,13 @@
-import { Router, Request, Response, NextFunction } from "express";
-import * as bodyParser from "body-parser";
+import { Request, Response, NextFunction } from "express";
 import * as passport from "passport";
 import * as mongoose from "mongoose";
-import * as bcrypt from "bcrypt";
 import { IUserModel } from "../models/user";
 import * as jwt from "jsonwebtoken";
 
 require("dotenv").config();
 require("../models/user");
 
-var cloudinary = require("cloudinary").v2;
+const cloudinary = require("cloudinary").v2;
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_KEY,
@@ -78,7 +76,7 @@ export class UserController {
             email: user.email,
             id: user._id
           };
-          let token = jwt.sign(userForToken, process.env.JWT_SECRET, {
+          const token = jwt.sign(userForToken, process.env.JWT_SECRET, {
             expiresIn: "1d"
           });
           res.send({
