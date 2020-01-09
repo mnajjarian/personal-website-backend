@@ -4,21 +4,16 @@ import * as bodyParser from "body-parser";
 import * as cookieParser from "cookie-parser";
 import * as mongoose from "mongoose";
 import * as morgan from "morgan";
-import * as session from "express-session";
 import * as passport from "passport";
 import * as cors from "cors";
 import * as helmet from "helmet";
+import * as path from 'path';
 import router from "./routes/index";
 
 const app = express();
 
 app.use(helmet());
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true
-  })
-);
+app.use(cors());
 if (process.env.NODE_ENV !== "production") {
   config();
 }
@@ -38,6 +33,7 @@ mongoose
     console.log(err);
     return null;
   });
+
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -46,11 +42,21 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./passportConfig");
 
-app.use("/", router);
 
-app.use("/public", express.static("public"));
+app.use("/api", router);
 
-const port = process.env.PORT;
+app.use(express.static("build"));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'), (err) => {
+    if(err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

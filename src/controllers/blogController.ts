@@ -9,9 +9,9 @@ interface BlogPost {
     updatedAt: string;
 }
 interface Post {
-    content: string
+    content: string;
 }
-const blogFormat = (blog: any) => {
+/* const blogFormat = (blog: BlogPost) => {
     console.log(blog)
     return {
         id: blog.id,
@@ -20,7 +20,7 @@ const blogFormat = (blog: any) => {
         createdAt: blog.createdAt,
         updatedAt: blog.updatedAt
     }
-}
+} */
 export class BlogController {
     async getPosts(_: Request, res: Response): Promise<void> {
         await Blog.find({}).populate('comments')
@@ -28,7 +28,7 @@ export class BlogController {
             if(err) {
                 console.log(err)
             }
-            res.json(result.map(post => post.toJSON()));
+            return res.json(result.map(post => post.toJSON()));
         })
         
     };
@@ -45,7 +45,7 @@ export class BlogController {
         if(!post) {
             return res.json({ Error: 'malformated id'})
         }
-        const updatedPost = {...post, content: req.body };
+        // const updatedPost = {...post, content: req.body };
         await Blog.findByIdAndUpdate(req.params.id, { content: req.body.content })
         .then(post => {
             res.json(post.toJSON())
@@ -54,7 +54,7 @@ export class BlogController {
     }
     removePost(req: Request, res: Response): void {
         Blog.findByIdAndDelete(req.params.id)
-        .then(blog => {
+        .then(() => {
             res.status(204).end();
         })
     }
