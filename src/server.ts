@@ -35,9 +35,10 @@ mongoose
   });
 
 app.use(express.static("build"));
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 require("./passportConfig");
