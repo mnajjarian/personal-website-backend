@@ -22,13 +22,13 @@ interface Post {
     }
 } */
 export class BlogController {
-    async getPosts(_: Request, res: Response): Promise<void> {
-        await Blog.find({}).populate('comments')
-        .then((err, result) => {
+    getPosts(_: Request, res: Response): void {
+        Blog.find({}).populate('comments')
+        .exec((err, result) => {
             if(err) {
                 console.log(err)
             }
-            return res.json(result.map(post => post.toJSON()));
+            return res.json(result.map((post: any) => post));
         })
         
     };
@@ -45,7 +45,7 @@ export class BlogController {
         if(!post) {
             return res.json({ Error: 'malformated id'})
         }
-        // const updatedPost = {...post, content: req.body };
+        //const updatedPost = {...post, content: req.body };
         await Blog.findByIdAndUpdate(req.params.id, { content: req.body.content })
         .then(post => {
             res.json(post.toJSON())
@@ -54,7 +54,7 @@ export class BlogController {
     }
     removePost(req: Request, res: Response): void {
         Blog.findByIdAndDelete(req.params.id)
-        .then(() => {
+        .then(blog => {
             res.status(204).end();
         })
     }
