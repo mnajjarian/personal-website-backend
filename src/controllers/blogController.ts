@@ -28,7 +28,7 @@ export class BlogController {
             if(err) {
                 console.log(err)
             }
-            return res.json(result.map((post: any) => post));
+            return res.json(result.map((post) => post));
         })
         
     };
