@@ -34,6 +34,7 @@ mongoose
     return null;
   });
 
+app.use(express.static("build"));
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -44,8 +45,6 @@ require("./passportConfig");
 
 
 app.use("/api", router);
-
-app.use(express.static("build"));
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'), (err) => {
