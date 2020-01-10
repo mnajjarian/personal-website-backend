@@ -55,7 +55,20 @@ export class UserController {
     });
     User.register(user, password)
       .then(user => {
-        res.json(user);
+        const userForToken = {
+          email: user.email,
+          id: user._id
+        };
+        const token = jwt.sign(userForToken, process.env.JWT_SECRET, {
+          expiresIn: "1d"
+        });
+        res.send({
+          success: true,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          _id: user._id,
+          token
+        });
       })
       .catch(error => {
         console.log(error);
