@@ -1,15 +1,11 @@
-import { Router, Request, Response, NextFunction } from "express";
-import * as bodyParser from "body-parser";
-import * as passport from "passport";
-import * as mongoose from "mongoose";
-import * as bcrypt from "bcrypt";
-import { IUserModel } from "../models/user";
-import * as jwt from "jsonwebtoken";
+/* eslint-disable @typescript-eslint/camelcase */
+import { Request, Response } from "express";
+
 
 require("dotenv").config();
 require("../models/user");
 
-let cloudinary = require("cloudinary").v2;
+const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -18,7 +14,7 @@ cloudinary.config({
 });
 
 export class GalleryController {
-  removeAssets = (req: Request, res: Response) => {
+  removeAssets = (req: Request, res: Response): void => {
     cloudinary.v2.api.delete_resources(
       req.body,
       { invalidate: true },
@@ -30,7 +26,7 @@ export class GalleryController {
       }
     );
   };
-  removeOne = (req: Request, res: Response) => {
+  removeOne = (req: Request, res: Response): void => {
     cloudinary.uploader.destroy(
       req.params.id,
       { invalidate: true },
@@ -39,6 +35,7 @@ export class GalleryController {
           console.log(err);
         }
         res.json(result);
+        console.log(result)
       }
     );
   };
