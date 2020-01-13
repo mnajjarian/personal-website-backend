@@ -47,6 +47,7 @@ export class UserController {
   async signUp(req: Request, res: Response): Promise<void> {
     const { email, firstName, lastName, password } = req.body;
     const user = await new User({
+      isAdmin: true,
       email,
       firstName,
       lastName,
@@ -66,7 +67,7 @@ export class UserController {
           success: true,
           firstName: user.firstName,
           lastName: user.lastName,
-          _id: user._id,
+          id: user._id,
           token
         });
       })
