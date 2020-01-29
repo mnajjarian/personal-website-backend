@@ -85,6 +85,7 @@ export class UserController {
         if (!user) return res.status(400).json(info.message);
 
         req.login(user, err => {
+          
           if (err) return res.status(500).json(err.message);
           const userForToken = {
             email: user.email,
@@ -102,5 +103,15 @@ export class UserController {
         });
       }
     )(req, res, next);
+  }
+  verifyUser(req: Request, res: Response): void {
+    const { token } = req.params;
+    jwt.verify(token, process.env.SECRET_KEY, (err: Error, verifiedJwt: any) => {
+      if(err) {
+        res.send(err.message)
+      } else {
+        res.send(verifiedJwt)
+      }
+    })
   }
 }

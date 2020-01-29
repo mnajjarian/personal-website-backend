@@ -18,6 +18,7 @@ router.get('/users', userController.getUsers)
 router.put('/users/:id', userController.updateUser)
 router.post('/login', userController.signIn)
 router.post('/signup', userController.signUp)
+router.post('/verify/:token', userController.verifyUser)
 
 router.post('/posts', blogController.create)
 router.get('/posts', blogController.getPosts)
