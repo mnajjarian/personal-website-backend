@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { Request, Response, NextFunction } from "express";
 import * as passport from "passport";
 import * as mongoose from "mongoose";
