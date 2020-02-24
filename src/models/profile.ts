@@ -1,8 +1,9 @@
 import { Schema, Document, model } from 'mongoose';
 
-export interface IProfileModel extends Document {
+export interface ProfileModel extends Document {
     name: string;
     image: string;
+    title: string;
     biography: string;
 }
 
@@ -17,6 +18,6 @@ const ProfileSchema = new Schema({
         type: String,
     },
 })
-const Profile = model<IProfileModel>('Profile', ProfileSchema);
+const Profile = model<ProfileModel>('Profile', ProfileSchema);
 
 export default Profile;

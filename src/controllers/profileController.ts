@@ -1,9 +1,9 @@
 import  { Request, Response }  from "express";
-import { IProfileModel } from '../models/profile';
+import { ProfileModel } from '../models/profile';
 import { model } from "mongoose";
 
 require('../models/profile');
-const Profile = model<IProfileModel>('Profile');
+const Profile = model<ProfileModel>('Profile');
 
 export class ProfileController {
     create(req: Request, res: Response): void {

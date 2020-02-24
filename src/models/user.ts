@@ -1,9 +1,8 @@
-import { Schema, Document, Model, model } from 'mongoose';
-import * as bcrypt from 'bcrypt';
+import { Schema, Document, model } from 'mongoose';
 import * as passportLocalMongoose from 'passport-local-mongoose';
-import { IUser } from '../interfaces/user';
+import { UserIn } from '../interfaces/user';
 
-export interface IUserModel extends IUser, Document {
+export interface UserModel extends UserIn, Document {
     fullName(): string;
 }
 
@@ -28,6 +27,9 @@ export const UserSchema: Schema = new Schema({
     imageUrl: {
         type: String
     },
+    title: {
+        type: String
+    },
     bio: {
         type: String,
         trim: true
@@ -40,6 +42,6 @@ UserSchema.methods.fullName = function(): string  {
 
 UserSchema.plugin(passportLocalMongoose, { usernameField: 'email'});
 
-const User = model<IUserModel>('User', UserSchema);
+const User = model<UserModel>('User', UserSchema);
 
 export default User;

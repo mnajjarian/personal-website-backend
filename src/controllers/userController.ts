@@ -2,7 +2,7 @@
 import { Request, Response, NextFunction } from "express";
 import * as passport from "passport";
 import * as mongoose from "mongoose";
-import { IUserModel } from "../models/user";
+import { UserModel } from "../models/user";
 import * as jwt from "jsonwebtoken";
 
 require("dotenv").config();
@@ -15,7 +15,7 @@ cloudinary.config({
   api_secret: process.env.CLOUD_SECRET
 });
 
-const User = mongoose.model<IUserModel>("User");
+const User = mongoose.model<UserModel>("User");
 
 export class UserController {
   getUsers(req: Request, res: Response): void {
@@ -53,6 +53,7 @@ export class UserController {
       firstName,
       lastName,
       imageUrl: "",
+      title: '',
       bio: ""
     });
     User.register(user, password)
@@ -80,7 +81,7 @@ export class UserController {
   signIn(req: Request, res: Response, next: NextFunction): void {
     passport.authenticate(
       "local",
-      (err: Error, user: IUserModel, info: any) => {
+      (err: Error, user: UserModel, info: any) => {
         if (err) return res.status(500).json(err.message);
 
         if (!user) return res.status(400).json(info.message);
