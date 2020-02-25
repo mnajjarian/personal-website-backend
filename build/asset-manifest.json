@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.3b6b1863.chunk.css",
-    "main.js": "/static/js/main.eea7af18.chunk.js",
-    "main.js.map": "/static/js/main.eea7af18.chunk.js.map",
+    "main.css": "/static/css/main.9a739f3e.chunk.css",
+    "main.js": "/static/js/main.56bf963f.chunk.js",
+    "main.js.map": "/static/js/main.56bf963f.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.3ea8ff11.js",
     "runtime-main.js.map": "/static/js/runtime-main.3ea8ff11.js.map",
     "static/js/2.ad997caf.chunk.js": "/static/js/2.ad997caf.chunk.js",
     "static/js/2.ad997caf.chunk.js.map": "/static/js/2.ad997caf.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.7a1a175d1c46269324a80318c3f8cea3.js": "/precache-manifest.7a1a175d1c46269324a80318c3f8cea3.js",
+    "precache-manifest.27fff5be121ec9ca8db7dc4f194e33e0.js": "/precache-manifest.27fff5be121ec9ca8db7dc4f194e33e0.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.3b6b1863.chunk.css.map": "/static/css/main.3b6b1863.chunk.css.map",
+    "static/css/main.9a739f3e.chunk.css.map": "/static/css/main.9a739f3e.chunk.css.map",
     "static/media/Blockquote.svg": "/static/media/Blockquote.5244267c.svg",
     "static/media/Bold.svg": "/static/media/Bold.24e86c54.svg",
     "static/media/CodeBlock.svg": "/static/media/CodeBlock.a2745814.svg",
     "static/media/Image.svg": "/static/media/Image.0195355f.svg",
     "static/media/Italic.svg": "/static/media/Italic.431c4f8a.svg",
-    "static/media/_main.scss": "/static/media/twitter-2.1ef99c59.svg",
+    "static/media/_main.scss": "/static/media/twitter-2.cb645bcf.svg",
     "static/media/Monospace.svg": "/static/media/Monospace.a4c355c1.svg",
     "static/media/OL.svg": "/static/media/OL.735619e1.svg",
     "static/media/Strike.svg": "/static/media/Strike.e35d7f33.svg",
@@ -26,6 +26,7 @@
     "static/media/bio-image.jpg": "/static/media/bio-image.4cec5674.jpg",
     "static/media/bubble.svg": "/static/media/bubble.3eaa3469.svg",
     "static/media/clock-thin.svg": "/static/media/clock-thin.565fe25f.svg",
+    "static/media/comment.svg": "/static/media/comment.808af9ea.svg",
     "static/media/facebook.svg": "/static/media/facebook.30cb7c0a.svg",
     "static/media/iconCheck.svg": "/static/media/iconCheck.a0b8efcf.svg",
     "static/media/instagram-2.svg": "/static/media/instagram-2.a00c56ee.svg",
@@ -37,7 +38,7 @@
   "entrypoints": [
     "static/js/runtime-main.3ea8ff11.js",
     "static/js/2.ad997caf.chunk.js",
-    "static/css/main.3b6b1863.chunk.css",
-    "static/js/main.eea7af18.chunk.js"
+    "static/css/main.9a739f3e.chunk.css",
+    "static/js/main.56bf963f.chunk.js"
   ]
 }
