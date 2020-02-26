@@ -3,7 +3,7 @@ import { IComment } from "./comment";
 
 export interface Blog extends Document {
   content: string;
-  author: string;
+  user: string;
   comments: IComment[];
 }
 
@@ -12,8 +12,8 @@ const BlogSchema = new Schema(
     content: {
       type: String
     },
-    author: {
-      type: String
+    user: {
+      type: Schema.Types.ObjectId, ref: "User"
     },
     comments: [{
       type: Schema.Types.ObjectId, ref: "Comment"

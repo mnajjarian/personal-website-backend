@@ -4,7 +4,7 @@ import Blog from '../models/blog';
 interface BlogPost {
     _id: string;
     content: string;
-    author: string;
+    user: string;
     createdAt: string;
     updatedAt: string;
 }
@@ -23,7 +23,7 @@ interface Post {
 } */
 export class BlogController {
     getPosts(_: Request, res: Response): void {
-        Blog.find({}).populate('comments')
+        Blog.find({}).populate('comments').populate('user')
         .exec((err, result) => {
             if(err) {
                 console.log(err)
@@ -33,7 +33,11 @@ export class BlogController {
         
     };
     async create(req: Request, res: Response): Promise<void> {
-        const newPost = new Blog(req.body)
+        const newPost = new Blog({
+            content: req.body.content,
+            user: req.body.userId
+        })
+        console.log(newPost)
         newPost
           .save()
           .then((post: Post) => {
