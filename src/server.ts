@@ -13,7 +13,7 @@ import router from "./routes/index";
 
 const app = express();
 
-
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("build"));
@@ -29,10 +29,7 @@ app.use(
     saveUninitialized: true,
     store: sessionStore,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-      httpOnly: true,
-      secure: true,
-      sameSite: true
+      maxAge: 1000 * 60 * 60 * 24
     }
   })
 );

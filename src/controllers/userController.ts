@@ -129,7 +129,7 @@ export class UserController {
     res.redirect("/");
   }
   auth(req: Request, res: Response): Response {
-    console.log(req.isAuthenticated(), req)
+    console.log(req.isAuthenticated())
     if (req.isAuthenticated()) {
       return res.json({ auth: true });
     } else {
