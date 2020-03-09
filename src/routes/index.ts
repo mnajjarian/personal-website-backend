@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import * as passport from 'passport';
 import { BlogController } from '../controllers/blogController'; 
 import { UserController } from '../controllers/userController';
 import { ProfileController } from '../controllers/profileController';
@@ -17,8 +16,9 @@ const router = Router();
 router.get('/users', userController.getUsers)
 router.put('/users/:id', userController.updateUser)
 router.post('/login', userController.signIn)
+router.get('/logout', userController.logout)
 router.post('/signup', userController.signUp)
-router.post('/verify/:token', userController.verifyUser)
+router.get('/auth', userController.auth)
 
 router.post('/posts', blogController.create)
 router.get('/posts', blogController.getPosts)

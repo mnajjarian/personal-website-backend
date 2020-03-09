@@ -3,10 +3,22 @@ import { Request, Response, NextFunction } from "express";
 import * as passport from "passport";
 import * as mongoose from "mongoose";
 import { UserModel } from "../models/user";
-import * as jwt from "jsonwebtoken";
-
+import * as crypto from "crypto";
+import { UserInterface, CloudinaryInterface } from "interfaces/user";
 require("dotenv").config();
 require("../models/user");
+
+function genPassword(password: string): { salt: string; hash: string } {
+  const salt = crypto.randomBytes(32).toString("hex");
+  const hash = crypto
+    .pbkdf2Sync(password, salt, 10000, 64, "sha512")
+    .toString("hex");
+
+  return {
+    salt: salt,
+    hash: hash
+  };
+}
 
 const cloudinary = require("cloudinary").v2;
 cloudinary.config({
@@ -17,11 +29,23 @@ cloudinary.config({
 
 const User = mongoose.model<UserModel>("User");
 
+const formatUser = (user: UserInterface): UserInterface => {
+  return {
+    _id: user._id,
+    isAdmin: user.isAdmin,
+    username: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    title: user.title,
+    imageUrl: user.imageUrl,
+    bio: user.bio
+  };
+};
 export class UserController {
   getUsers(req: Request, res: Response): void {
     User.find({})
       .then(users => {
-        res.json(users);
+        res.json(users.map(u => formatUser(u)));
       })
       .catch(error => {
         console.log(error);
@@ -32,10 +56,11 @@ export class UserController {
     cloudinary.uploader.destroy(
       req.body.publicId,
       { invalidate: true },
-      (err: Error, result: any) => {
-        console.log(result);
+      (err: Error, result: CloudinaryInterface) => {
+        console.log("result: ", result);
       }
     );
+
     User.findByIdAndUpdate(userId, req.body.obj, { new: true })
       .then(updatedUser => {
         res.json(updatedUser.toJSON());
@@ -46,74 +71,68 @@ export class UserController {
       });
   }
   async signUp(req: Request, res: Response): Promise<void> {
-    const { email, firstName, lastName, password } = req.body;
+    const { username, firstName, lastName, password } = req.body;
+    const { salt, hash } = genPassword(password);
+
     const user = await new User({
       isAdmin: true,
-      email,
+      username,
       firstName,
       lastName,
       imageUrl: "",
-      title: '',
-      bio: ""
+      title: "",
+      bio: "",
+      hash,
+      salt
     });
-    User.register(user, password)
+
+    user
+      .save()
       .then(user => {
-        const userForToken = {
-          email: user.email,
-          id: user._id
-        };
-        const token = jwt.sign(userForToken, process.env.JWT_SECRET, {
-          expiresIn: "1d"
-        });
         res.send({
           success: true,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          id: user._id,
-          token
+          name: user.fullName(),
+          id: user._id
         });
       })
-      .catch(error => {
-        console.log(error);
-        res.status(500).send(error.message);
+      .catch(err => {
+        res.json({ success: false, error: err.errmsg });
       });
   }
   signIn(req: Request, res: Response, next: NextFunction): void {
     passport.authenticate(
       "local",
-      (err: Error, user: UserModel, info: any) => {
-        if (err) return res.status(500).json(err.message);
+      (err: Error, user: UserModel, info: { message: string }) => {
+        if (err)
+          return res
+            .status(500)
+            .json({
+              success: false,
+              error: "username or password is incorrect"
+            });
 
         if (!user) return res.status(400).json(info.message);
 
         req.login(user, err => {
-          
           if (err) return res.status(500).json(err.message);
-          const userForToken = {
-            email: user.email,
-            id: user._id
-          };
-          const token = jwt.sign(userForToken, process.env.JWT_SECRET, {
-            expiresIn: "1d"
-          });
           res.send({
             success: true,
             name: user.fullName(),
-            id: user._id,
-            token
+            id: user._id
           });
         });
       }
     )(req, res, next);
   }
-  verifyUser(req: Request, res: Response): void {
-    const { token } = req.params;
-    jwt.verify(token, process.env.SECRET_KEY, (err: Error, verifiedJwt: any) => {
-      if(err) {
-        res.send(err.message)
-      } else {
-        res.send(verifiedJwt)
-      }
-    })
+  logout(req: Request, res: Response): void {
+    req.logout();
+    res.redirect("/");
+  }
+  auth(req: Request, res: Response): Response {
+    if (req.isAuthenticated()) {
+      return res.json({ auth: true });
+    } else {
+      return res.json({ auth: false });
+    }
   }
 }

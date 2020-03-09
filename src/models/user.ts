@@ -1,8 +1,7 @@
 import { Schema, Document, model } from 'mongoose';
-import * as passportLocalMongoose from 'passport-local-mongoose';
-import { UserIn } from '../interfaces/user';
+import { UserModelIn } from '../interfaces/user';
 
-export interface UserModel extends UserIn, Document {
+export interface UserModel extends UserModelIn, Document {
     fullName(): string;
 }
 
@@ -11,7 +10,7 @@ export const UserSchema: Schema = new Schema({
         type: Boolean,
         default: false
     },
-    email: {
+    username: {
         type: String,
         required: true,
         unique: true
@@ -33,14 +32,18 @@ export const UserSchema: Schema = new Schema({
     bio: {
         type: String,
         trim: true
+    },
+    hash: {
+        type: String
+    },
+    salt: {
+        type: String
     }
 });
 
 UserSchema.methods.fullName = function(): string  {
     return (this.firstName.trim() + " " + this.lastName.trim());
 }
-
-UserSchema.plugin(passportLocalMongoose, { usernameField: 'email'});
 
 const User = model<UserModel>('User', UserSchema);
 
