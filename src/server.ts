@@ -13,15 +13,7 @@ import router from "./routes/index";
 
 const app = express();
 
-app.use(
-  cors({
-    credentials: true,
-    origin:
-      process.env.NODE_ENV === "production"
-        ? process.env.PUBLIC_URL
-        : "http://localhost:3000"
-  })
-);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("build"));
