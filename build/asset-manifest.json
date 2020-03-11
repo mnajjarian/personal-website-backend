@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.73389ee1.chunk.css",
-    "main.js": "/static/js/main.f1060e0f.chunk.js",
-    "main.js.map": "/static/js/main.f1060e0f.chunk.js.map",
+    "main.js": "/static/js/main.479b1f8d.chunk.js",
+    "main.js.map": "/static/js/main.479b1f8d.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.3ea8ff11.js",
     "runtime-main.js.map": "/static/js/runtime-main.3ea8ff11.js.map",
     "static/js/2.faae38d0.chunk.js": "/static/js/2.faae38d0.chunk.js",
     "static/js/2.faae38d0.chunk.js.map": "/static/js/2.faae38d0.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.f4020db7dfb9d9066aaaed07626fcbe8.js": "/precache-manifest.f4020db7dfb9d9066aaaed07626fcbe8.js",
+    "precache-manifest.9a4ad47ce1033d478d2e7a47c6fabc42.js": "/precache-manifest.9a4ad47ce1033d478d2e7a47c6fabc42.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.73389ee1.chunk.css.map": "/static/css/main.73389ee1.chunk.css.map",
     "static/media/Blockquote.svg": "/static/media/Blockquote.5244267c.svg",
@@ -39,6 +39,6 @@
     "static/js/runtime-main.3ea8ff11.js",
     "static/js/2.faae38d0.chunk.js",
     "static/css/main.73389ee1.chunk.css",
-    "static/js/main.f1060e0f.chunk.js"
+    "static/js/main.479b1f8d.chunk.js"
   ]
 }
