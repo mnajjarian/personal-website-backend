@@ -13,7 +13,7 @@ import router from "./routes/index";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("build"));
@@ -31,7 +31,7 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
-      sameSite: true,
+      //sameSite: true,
       secure: true
     }
   })
