@@ -13,7 +13,7 @@ import router from "./routes/index";
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("build"));
