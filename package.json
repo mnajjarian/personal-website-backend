@@ -10,7 +10,7 @@
     "start": "node dist/server.js",
     "build:ui": "rm -rf build && cd ../maryam-tavakkoli && yarn build --prod && cp -r build ../maryam-website-backend",
     "deploy": "git push heroku master",
-    "deploy:full": "yarn run build:ui && git add . && git commit -m uibuild && git push && yarn deploy",
+    "deploy:full": "tsc && yarn run build:ui && git add . && git commit -m uibuild && git push && yarn deploy",
     "logs:prod": "heroku logs --tail",
     "watch": "yarn build:live",
     "build": "tsc",

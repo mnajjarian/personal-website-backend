@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.38fa0995.chunk.css",
+    "main.js": "/static/js/main.073e2fc1.chunk.js",
+    "main.js.map": "/static/js/main.073e2fc1.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3ea8ff11.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3ea8ff11.js.map",
+    "static/js/2.3f26271c.chunk.js": "/static/js/2.3f26271c.chunk.js",
+    "static/js/2.3f26271c.chunk.js.map": "/static/js/2.3f26271c.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f05e30ece9c833a37a3fccf8934a46df.js": "/precache-manifest.f05e30ece9c833a37a3fccf8934a46df.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.38fa0995.chunk.css.map": "/static/css/main.38fa0995.chunk.css.map",
+    "static/media/Blockquote.svg": "/static/media/Blockquote.5244267c.svg",
+    "static/media/Bold.svg": "/static/media/Bold.24e86c54.svg",
+    "static/media/CodeBlock.svg": "/static/media/CodeBlock.a2745814.svg",
+    "static/media/Image.svg": "/static/media/Image.0195355f.svg",
+    "static/media/Italic.svg": "/static/media/Italic.431c4f8a.svg",
+    "static/media/_main.scss": "/static/media/twitter-2.cb645bcf.svg",
+    "static/media/Monospace.svg": "/static/media/Monospace.a4c355c1.svg",
+    "static/media/OL.svg": "/static/media/OL.735619e1.svg",
+    "static/media/Strike.svg": "/static/media/Strike.e35d7f33.svg",
+    "static/media/UL.svg": "/static/media/UL.ff2d3d11.svg",
+    "static/media/Underline.svg": "/static/media/Underline.2f0cc38b.svg",
+    "static/media/avatar.png": "/static/media/avatar.41c9a2b3.png",
+    "static/media/bubble.svg": "/static/media/bubble.3eaa3469.svg",
+    "static/media/clock-thin.svg": "/static/media/clock-thin.565fe25f.svg",
+    "static/media/comment.svg": "/static/media/comment.808af9ea.svg",
+    "static/media/facebook.svg": "/static/media/facebook.30cb7c0a.svg",
+    "static/media/iconCheck.svg": "/static/media/iconCheck.a0b8efcf.svg",
+    "static/media/instagram-2.svg": "/static/media/instagram-2.a00c56ee.svg",
+    "static/media/linkedin.svg": "/static/media/linkedin.86bb45b8.svg",
+    "static/media/save.svg": "/static/media/save.70f9c9cd.svg",
+    "static/media/time-3.svg": "/static/media/time-3.9c3f305b.svg",
+    "static/media/user.svg": "/static/media/user.8702dc53.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3ea8ff11.js",
+    "static/js/2.3f26271c.chunk.js",
+    "static/css/main.38fa0995.chunk.css",
+    "static/js/main.073e2fc1.chunk.js"
+  ]
+}
