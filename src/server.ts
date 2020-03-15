@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cookieParser from "cookie-parser";
-
+import * as compression from 'compression';
 import * as morgan from "morgan";
 import * as passport from "passport";
 import * as session from "express-session";
@@ -13,6 +13,7 @@ import router from "./routes/index";
 
 const app = express();
 
+app.use(compression())
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

@@ -21,6 +21,7 @@ interface Post {
         updatedAt: blog.updatedAt
     }
 } */
+
 export class BlogController {
   getPosts(_: Request, res: Response): void {
     Blog.find({})
@@ -67,8 +68,10 @@ export class BlogController {
     });
   }
   removePost(req: Request, res: Response): void {
-    Blog.findByIdAndDelete(req.params.id).then(blog => {
+    Blog.findByIdAndDelete(req.params.id).then(() => {
       res.status(204).end();
-    });
+    }).catch(err => {
+      console.log(err)
+    })
   }
 }
