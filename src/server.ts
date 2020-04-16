@@ -31,10 +31,10 @@ app.use(
     store: sessionStore,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      secure: true,
-      domain: process.env.DOMAIN_URL,
-      httpOnly: true,
-      sameSite: true,
+      //secure: true,
+      //domain: process.env.DOMAIN_URL,
+      //httpOnly: true,
+      //sameSite: true,
     }
   })
 );

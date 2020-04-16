@@ -15,7 +15,7 @@ function checkAuthenticate(req: Request, res: Response, next: NextFunction): voi
     if(req.isAuthenticated()) {
       next()
     }
-    res.redirect('/login')
+    res.json({ error: 'Unauthorized'})
   }
 
 const router = Router();
