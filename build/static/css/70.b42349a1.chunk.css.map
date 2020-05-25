@@ -1,1 +1,0 @@
-{"version":3,"sources":["_style.scss"],"names":[],"mappings":"AAAA,SACI,YAAa,CACb,UAAW,CACX,qBAAuB","file":"70.b42349a1.chunk.css","sourcesContent":[".loading {\n    height: 100vh;\n    width: 100%;\n    background-color: white;\n}"]}

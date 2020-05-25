@@ -1,0 +1,2 @@
+.subscription{display:flex;flex-direction:column;padding-top:1em;width:50%}@media (max-width:599px){.subscription{width:90%}}.subscription h2{margin-bottom:0}.subscription__text{padding:1em 0;font-size:1.2em}.subscription__error{color:red;font-size:.7em;margin-bottom:0}.subscription__shake{-webkit-animation:shake .82s cubic-bezier(.36,.07,.19,.97) both;animation:shake .82s cubic-bezier(.36,.07,.19,.97) both}
+/*# sourceMappingURL=50.5d393fc5.chunk.css.map */

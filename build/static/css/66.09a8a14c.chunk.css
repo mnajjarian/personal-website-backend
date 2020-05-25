@@ -1,2 +1,0 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap);.modal{display:flex;align-items:center;justify-content:center;-webkit-animation:fadeIn 1s;animation:fadeIn 1s}.modal,.modal__overlay{position:fixed;height:100%;width:100%;top:0;left:0}.modal__overlay{background-color:rgba(0,0,0,.5)}.modal__body{background-color:#fff;border-radius:7px;max-height:calc(100% - 60px);max-width:768px;position:relative;z-index:22;padding:1em}
-/*# sourceMappingURL=66.09a8a14c.chunk.css.map */
