@@ -16,10 +16,10 @@ function checkAuthenticate(
   res: Response,
   next: NextFunction
 ): void {
-  if (req.isAuthenticated()) {
-    next();
+  if (!req.isAuthenticated()) {
+    res.status(404).send({ error: "Not Authorized" });
   }
-  res.status(404).send({ error: "Not Authorized" });
+  next();
 }
 
 const router = Router();

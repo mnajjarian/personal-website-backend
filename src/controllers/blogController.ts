@@ -33,22 +33,22 @@ export class BlogController {
         "bio",
         "imageUrl",
         "title",
-        "username"
+        "username",
       ])
       .exec((err, result) => {
         if (err) {
           console.log(err);
         }
-        return res.json(result.map(post => post));
+        return res.json(result.map((post) => post));
       });
   }
   async create(req: Request, res: Response): Promise<void> {
     const newPost = new Blog({
       content: req.body.content,
-      user: req.body.userId
+      user: req.body.userId,
     });
-    console.log(newPost);
-    newPost
+
+    await newPost
       .save()
       .then((post: Post) => {
         return res.status(201).json(post);
@@ -62,16 +62,18 @@ export class BlogController {
     }
     //const updatedPost = {...post, content: req.body };
     await Blog.findByIdAndUpdate(req.params.id, {
-      content: req.body.content
-    }).then(post => {
-      res.json(post.toJSON());
+      content: req.body.content,
+    }).then((post) => {
+      return res.json(post.toJSON());
     });
   }
   removePost(req: Request, res: Response): void {
-    Blog.findByIdAndDelete(req.params.id).then(() => {
-      res.status(204).end();
-    }).catch(err => {
-      console.log(err)
-    })
+    Blog.findByIdAndDelete(req.params.id)
+      .then(() => {
+        res.status(204).end();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
