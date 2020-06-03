@@ -16,7 +16,7 @@ function genPassword(password: string): { salt: string; hash: string } {
 
   return {
     salt: salt,
-    hash: hash
+    hash: hash,
   };
 }
 
@@ -24,7 +24,7 @@ const cloudinary = require("cloudinary").v2;
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_KEY,
-  api_secret: process.env.CLOUD_SECRET
+  api_secret: process.env.CLOUD_SECRET,
 });
 
 const User = mongoose.model<UserModel>("User");
@@ -38,34 +38,38 @@ const formatUser = (user: UserInterface): UserInterface => {
     lastName: user.lastName,
     title: user.title,
     imageUrl: user.imageUrl,
-    bio: user.bio
+    bio: user.bio,
   };
 };
 export class UserController {
   getUsers(req: Request, res: Response): void {
     User.find({})
-      .then(users => {
-        res.json(users.map(u => formatUser(u)));
+      .then((users) => {
+        res.json(users.map((u) => formatUser(u)));
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
   updateUser(req: Request, res: Response): void {
     const userId = req.params.id;
-    cloudinary.uploader.destroy(
-      req.body.publicId,
-      { invalidate: true },
-      (err: Error, result: CloudinaryInterface) => {
-        console.log("result: ", result);
-      }
-    );
+    const { obj, publicId } = req.body;
 
-    User.findByIdAndUpdate(userId, req.body.obj, { new: true })
-      .then(updatedUser => {
+    if (publicId) {
+      cloudinary.uploader.destroy(
+        req.body.publicId,
+        { invalidate: true },
+        (err: Error, result: CloudinaryInterface) => {
+          console.log("result: ", result);
+        }
+      );
+    }
+
+    User.findByIdAndUpdate(userId, obj, { new: true })
+      .then((updatedUser) => {
         res.json(updatedUser.toJSON());
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         res.status(400).send({ Error: "malformatted id" });
       });
@@ -83,19 +87,19 @@ export class UserController {
       title: "",
       bio: "",
       hash,
-      salt
+      salt,
     });
 
     user
       .save()
-      .then(user => {
+      .then((user) => {
         res.send({
           success: true,
           name: user.fullName(),
-          id: user._id
+          id: user._id,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         res.json({ success: false, error: err.errmsg });
       });
   }
@@ -104,21 +108,19 @@ export class UserController {
       "local",
       (err: Error, user: UserModel, info: { message: string }) => {
         if (err)
-          return res
-            .status(500)
-            .json({
-              success: false,
-              error: "username or password is incorrect"
-            });
+          return res.status(500).json({
+            success: false,
+            error: "username or password is incorrect",
+          });
 
         if (!user) return res.status(400).json(info.message);
 
-        req.login(user, err => {
+        req.login(user, (err) => {
           if (err) return res.status(500).json(err.message);
           res.send({
             success: true,
             name: user.fullName(),
-            id: user._id
+            id: user._id,
           });
         });
       }

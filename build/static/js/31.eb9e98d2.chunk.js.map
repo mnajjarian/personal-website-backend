@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/Loading/Loading.tsx"],"names":["Loading","className"],"mappings":"wGAAA,2BAMeA,UAJf,WACE,OAAO,yBAAKC,UAAU,WAAf","file":"static/js/31.eb9e98d2.chunk.js","sourcesContent":["import React from 'react'\n\nfunction Loading(): JSX.Element {\n  return <div className=\"loading\">Loading</div>\n}\n\nexport default Loading\n"],"sourceRoot":""}
