@@ -47,6 +47,7 @@ router.delete(
 router.post("/profile", profileController.create);
 router.get("/profile", profileController.getProfile);
 
+router.get("/gallery", gallaryController.getGallery);
 router.delete("/assets/:id", checkAuthenticate, gallaryController.removeOne);
 
 export default router;

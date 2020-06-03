@@ -13,8 +13,16 @@ cloudinary.config({
 });
 
 export class GalleryController {
+  getGallery = (req: Request, res: Response): void => {
+    cloudinary.api.resources(function(error: Error, result: any) {
+      if (error) {
+        res.status(500).json({ error: error.message });
+      }
+      res.json(result.resources);
+    });
+  };
   removeAssets = (req: Request, res: Response): void => {
-    cloudinary.v2.api.delete_resources(
+    cloudinary.api.delete_resources(
       req.body,
       { invalidate: true },
       (err: Error, result: any) => {
