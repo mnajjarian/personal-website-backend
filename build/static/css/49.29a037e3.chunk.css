@@ -1,0 +1,2 @@
+.block{margin-left:150px}.block__title{color:purple;margin:0}.block__content{max-height:350px;overflow:scroll}.block__items{width:250px;padding-bottom:8px}.block__items:not(:last-child){border-bottom:1px solid #ddd}.block__time{display:block;margin-top:8px;color:hsla(0,0%,100%,.49);font-weight:700;font-size:.7rem}.block__link{text-decoration:none;color:#fff}@media (max-width:768px){.block{display:none}}
+/*# sourceMappingURL=49.29a037e3.chunk.css.map */
