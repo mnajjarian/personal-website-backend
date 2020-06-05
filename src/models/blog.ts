@@ -5,33 +5,41 @@ export interface Blog extends Document {
   content: string;
   user: string;
   comments: IComment[];
+  draft: boolean;
 }
 
 const BlogSchema = new Schema(
   {
     content: {
-      type: String
+      type: String,
     },
     user: {
-      type: Schema.Types.ObjectId, ref: "User"
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
-    comments: [{
-      type: Schema.Types.ObjectId, ref: "Comment"
-    }]
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
+    draft: {
+      type: Boolean,
+    },
   },
   {
     timestamps: {
       createdAt: true,
-      updatedAt: true
-    }
+      updatedAt: true,
+    },
   }
 );
-BlogSchema.set('toJSON', {
+BlogSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
-    delete returnedObject._id
-    delete returnedObject.__v
-  }
+    delete returnedObject._id;
+    delete returnedObject.__v;
+  },
 });
 const Blog = model<Blog>("Blog", BlogSchema);
 

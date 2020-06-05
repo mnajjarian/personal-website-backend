@@ -46,6 +46,7 @@ export class BlogController {
     const newPost = new Blog({
       content: req.body.content,
       user: req.body.userId,
+      draft: req.body.draft,
     });
 
     await newPost
@@ -60,12 +61,19 @@ export class BlogController {
     if (!post) {
       return res.json({ Error: "malformated id" });
     }
-    //const updatedPost = {...post, content: req.body };
-    await Blog.findByIdAndUpdate(req.params.id, {
-      content: req.body.content,
-    }).then((post) => {
-      return res.json(post.toJSON());
-    });
+    const { content, draft } = req.body;
+
+    await Blog.findByIdAndUpdate(
+      req.params.id,
+      { content, draft },
+      { new: true }
+    )
+      .then((post) => {
+        return res.json(post.toJSON());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   removePost(req: Request, res: Response): void {
     Blog.findByIdAndDelete(req.params.id)
