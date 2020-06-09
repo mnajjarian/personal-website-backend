@@ -1,0 +1,2 @@
+(this["webpackJsonpmy-app"]=this["webpackJsonpmy-app"]||[]).push([[22],{51:function(e,c,a){"use strict";a.r(c),a.d(c,"Picture",(function(){return n}));var t=a(0),i=a.n(t);function n(e){var c=e.imgUrl,a=e.publicId,t=e.handleClick,n=e.checked;return i.a.createElement("div",{className:"picture",key:a,onClick:t(a)},i.a.createElement("img",{className:"picture__image",src:c,alt:"pic"}),i.a.createElement("input",{type:"checkbox",readOnly:!0,checked:n,className:"picture__checked"}))}}}]);
+//# sourceMappingURL=22.c5cc3648.chunk.js.map

@@ -1,0 +1,1 @@
+{"version":3,"sources":["_style.scss"],"names":[],"mappings":"AAAA,OACE,eAAiB,CACjB,aAAc,CACd,iBAAkB,CAHpB,UAKI,aAAc","file":"50.a3b12dbe.chunk.css","sourcesContent":[".error {\n  font-weight: bold;\n  font-size: 2em;\n  text-align: center;\n  h3 {\n    color: #c72d2d;\n  }\n}\n"]}
